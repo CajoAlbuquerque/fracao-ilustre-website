@@ -1,18 +1,17 @@
-'use server';
-
-import { cookies } from 'next/headers';
-import { revalidatePath } from 'next/cache';
+// import { cookies } from 'next/headers';
+// import { revalidatePath } from 'next/cache';
 
 /**
  * Updates the NEXT_LOCALE cookie to switch site language.
  */
 export async function setLanguageAction(locale: 'pt' | 'en') {
-  const cookieStore = await cookies();
-  cookieStore.set('NEXT_LOCALE', locale, {
-    path: '/',
-    maxAge: 60 * 60 * 24 * 365, // 1 year
-  });
-  revalidatePath('/');
+  console.log('cookies test')
+  // const cookieStore = await cookies();
+  // cookieStore.set('NEXT_LOCALE', locale, {
+  //   path: '/',
+  //   maxAge: 60 * 60 * 24 * 365, // 1 year
+  // });
+  // revalidatePath('/');
 }
 
 /**
