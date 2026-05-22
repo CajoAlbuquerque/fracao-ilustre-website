@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, Archivo_Black } from "next/font/google";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 import "../../globals.css";
 
 const archivo = Archivo({
@@ -25,8 +25,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const locale = cookieStore.get("NEXT_LOCALE")?.value || "pt";
+  // TODO: add cookies
+  // const cookieStore = await cookies();
+  const locale = 'pt' // cookieStore.get("NEXT_LOCALE")?.value || "pt";
 
   return (
     <html lang={locale} className={`${archivo.variable} ${archivoBlack.variable}`}>

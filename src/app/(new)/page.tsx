@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { cookies } from 'next/headers';
+// import { cookies } from 'next/headers';
 import { getTranslations, getProjects, getFractions } from '../../data/api';
 
 export default async function HomeAlt() {
-  const cookieStore = await cookies();
-  const locale = (cookieStore.get('NEXT_LOCALE')?.value || 'pt') as 'pt' | 'en';
+  // TODO: add cookies
+  // const cookieStore = await cookies();
+  const locale = 'pt' // (cookieStore.get('NEXT_LOCALE')?.value || 'pt') as 'pt' | 'en';
   const t = getTranslations(locale);
   const projects = await getProjects();
   const availableFractions = await getFractions({ status: 'available' });
