@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import MobileMenu from './MobileMenu';
+import { ImagesBasePath } from '@/app/constants';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -26,7 +27,7 @@ const Navbar = () => {
       <div className="relative h-12 w-12">
         <Link href="/">
           <Image 
-            src="/images/logo.png" 
+            src={`${ImagesBasePath}/logo.png`}
             alt="Fração Ilustre Logo" 
             fill 
             className="object-contain"

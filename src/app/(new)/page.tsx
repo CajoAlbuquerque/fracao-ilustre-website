@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { ImagesBasePath } from '@/app/constants';
 // import { cookies } from 'next/headers';
-import { getTranslations, getProjects, getFractions } from '../../data/api';
+import { getTranslations, getProjects, getFractions } from '@/data/api';
 
 export default async function HomeAlt() {
   // TODO: add cookies
@@ -18,7 +19,7 @@ export default async function HomeAlt() {
         {/* Background photo fallback */}
         <div className="absolute inset-0 z-0 opacity-40">
           <Image
-            src="/images/colina-verde-living-room.jpg"
+            src={`${ImagesBasePath}/colina-verde-living-room.jpg`}
             alt="Fração Ilustre Hero Background"
             fill
             className="object-cover filter grayscale"
@@ -35,7 +36,7 @@ export default async function HomeAlt() {
             CONSTRUÇÃO DE <span className="text-[#edb154]">VANGUARDA</span> EM VISEU
           </h1>
           <p className="text-zinc-400 max-w-xl text-base md:text-lg mt-6 font-light">
-            {locale === 'pt' 
+            {locale === 'pt'
               ? 'Casas sustentáveis e apartamentos premium desenhados ao detalhe. Mais de 30 anos de experiência transformados em lares para a sua família.'
               : 'Sustainable houses and premium apartments designed in detail. More than 30 years of experience turned into homes for your family.'}
           </p>
@@ -57,8 +58,8 @@ export default async function HomeAlt() {
         </h2>
         <div className="grid grid-cols-12 gap-8">
           {projects.map((project, idx) => (
-            <div 
-              key={project.slug} 
+            <div
+              key={project.slug}
               className={idx % 2 === 0 ? "asymmetrical-grid-left" : "asymmetrical-grid-right"}
             >
               <Link href={`/projects/${project.slug}`} className="group block">

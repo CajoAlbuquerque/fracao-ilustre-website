@@ -1,0 +1,1 @@
+export const ImagesBasePath = '/fracao-ilustre-website/images';
