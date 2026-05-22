@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-primary-bg: #101010;
+  --color-secondary-bg: #1A1A1A;
+  --color-accent-gold: #EDB154;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #CCCCCC;
+  --color-border: rgba(255, 255, 255, 0.1);
+
+  /* Fonts */
+  --font-main: var(--font-archivo);
+  --font-display: var(--font-archivo-black);
+
+  /* Custom easing */
+  --ease-brand: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@layer base {
+  body {
+    @apply bg-primary-bg text-text-primary font-main antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display uppercase tracking-[-2px] leading-none;
+  }
+}
+
+/* Custom keyframes for hero staggered reveal */
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal {
+  animation: revealUp 1s var(--ease-brand) forwards;
+}
+
+@layer base {
+  :root {
+    --primary-bg: #101010;
+    --secondary-bg: #1A1A1A;
+    --accent-gold: #edb154;
+    --text-primary: #FFFFFF;
+    --text-secondary: #CCCCCC;
+    
+    --font-archivo: var(--font-archivo);
+    --font-archivo-black: var(--font-archivo-black);
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  body {
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+    font-family: var(--font-archivo), sans-serif;
+    min-height: 100vh;
+  }
+}
+
+/* Custom Design Tokens & Classes */
+.font-main {
+  font-family: var(--font-archivo), sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-archivo-black), sans-serif;
+}
+
+/* Vanguard Images: Desaturated by default, color on hover + slight scale */
+.vanguard-image-container {
+  overflow: hidden;
+  background-color: #000;
+}
+
+.vanguard-image {
+  filter: grayscale(100%);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.vanguard-image-container:hover .vanguard-image {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+/* Accent buttons */
+.btn-primary {
+  background-color: var(--accent-gold);
+  color: #101010;
+  font-weight: 700;
+  transition: var(--transition);
+}
+.btn-primary:hover {
+  background-color: #db9c3b;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid #FFFFFF;
+  color: #FFFFFF;
+  font-weight: 700;
+  transition: var(--transition);
+}
+.btn-secondary:hover {
+  background-color: #FFFFFF;
+  color: #101010;
+  transform: translateY(-2px);
+}
+
+/* Custom layout helpers */
+.asymmetrical-grid-left {
+  grid-column: span 12;
+}
+@media (min-width: 768px) {
+  .asymmetrical-grid-left {
+    grid-column: span 8;
+  }
+}
+
+.asymmetrical-grid-right {
+  grid-column: span 12;
+}
+@media (min-width: 768px) {
+  .asymmetrical-grid-right {
+    grid-column: span 4;
+  }
+}
