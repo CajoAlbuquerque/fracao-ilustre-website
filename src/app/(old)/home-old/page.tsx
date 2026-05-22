@@ -14,7 +14,7 @@ export default function HomePage() {
         subtitle="Engenharia Premium"
         title={<>Construímos <br />O Futuro.</>}
         description="Inovação, qualidade absoluta e uma herança de 30 anos. De família para família, elevamos o padrão da construção em Viseu."
-        ctaText="Explorar Portfólio"
+        ctaText="Frações Disponíveis"
         ctaHref="/projetos"
         backgroundImage={`${ImagesBasePath}/colina-verde-kitchen.jpg`}
       />

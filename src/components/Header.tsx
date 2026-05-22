@@ -1,9 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTransition } from 'react';
 import { setLanguageAction } from '@/app/actions';
 import { TranslationDictionary } from '@/data/translations';
+import { ImagesBasePath } from '@/app/constants';
 
 interface HeaderProps {
   locale: 'pt' | 'en';
@@ -22,7 +24,15 @@ export default function Header({ locale, t }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 bg-[#101010]/90 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between">
-      <Link href="/" className="flex items-center gap-2">
+      <Link href="/" className="flex items-center gap-4">
+        <Image
+          src={`${ImagesBasePath}/logo.png`}
+          alt="Fração Ilustre Logo"
+          width={48}
+          height={48}
+          className="object-contain"
+          priority
+        />
         <span className="font-display text-xl uppercase tracking-wider text-white">
           Fração <span className="text-accent-gold">Ilustre</span>
         </span>
