@@ -1,56 +1,42 @@
 import React from 'react';
+import { Project } from '@/data/types'
+import { Routes } from '@/config/routes'
+import Link from 'next/link';
 import Image from 'next/image';
-import Button from './Button';
+import { TranslationDictionary } from '@/data/translations';
 
 interface ProjectCardProps {
-  title: string;
-  location: string;
-  image: string;
-  imageAlt: string;
-  href: string;
-  ctaVariant?: 'primary' | 'outline';
+  project: Project
+  locale: 'pt' | 'en';
+  t: TranslationDictionary
   className?: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
-  title,
-  location,
-  image,
-  imageAlt,
-  href,
-  ctaVariant = 'primary',
-  className = '',
-}) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, locale, t, className }) => {
   return (
-    <div className={`relative group overflow-hidden ${className}`}>
-      <div className="relative h-full min-h-[500px]">
-        <Image
-          src={image}
-          alt={imageAlt}
-          fill
-          className="object-cover transition-transform duration-800 group-hover:scale-105"
-        />
-        
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-bg via-primary-bg/20 to-transparent" />
-        
-        {/* Content */}
-        <div className="absolute bottom-0 left-0 w-full p-8 md:p-12">
-          <h3 className="text-3xl md:text-4xl mb-2">
-            {title}
-          </h3>
-          <p className="text-text-secondary mb-6">
-            {location}
-          </p>
-          <Button 
-            href={href} 
-            variant={ctaVariant}
-            className="px-6 py-3"
-          >
-            Descobrir
-          </Button>
+    <div
+      key={project.slug}
+      className={className}
+    >
+      <Link href={Routes.projects.detail(project.slug)} className="group block">
+        <div className="vanguard-image-container relative h-[350px] md:h-[450px] w-full rounded border border-white/10 mb-4">
+          {project.images[0] && (
+            <Image
+              src={project.images[0].url}
+              alt={project.images[0].alt[locale]}
+              fill
+              className="vanguard-image object-cover"
+            />
+          )}
+          <div className="absolute top-4 right-4 bg-[#101010]/80 border border-white/10 px-3 py-1 text-xs uppercase tracking-wider text-white">
+            {project.status === 'completed' ? t.common.sold : t.common.available}
+          </div>
         </div>
-      </div>
+        <h3 className="font-display text-xl uppercase text-white group-hover:text-[#edb154] transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-zinc-500 text-sm mt-1">{project.location[locale]}</p>
+      </Link>
     </div>
   );
 };

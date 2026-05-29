@@ -5,14 +5,15 @@ import Image from 'next/image';
 import { useTransition } from 'react';
 import { setLanguageAction } from '@/app/actions';
 import { TranslationDictionary } from '@/data/translations';
-import { ImagesBasePath } from '@/app/constants';
+import { Routes } from '@/config/routes';
+import { ImagesBasePath } from '@/config/constants';
 
 interface HeaderProps {
   locale: 'pt' | 'en';
   t: TranslationDictionary;
 }
 
-export default function Header({ locale, t }: HeaderProps) {
+export default function Header({ locale, t }: Readonly<HeaderProps>) {
   const [isPending, startTransition] = useTransition();
 
   const toggleLanguage = () => {
@@ -39,9 +40,9 @@ export default function Header({ locale, t }: HeaderProps) {
       </Link>
       <nav className="hidden md:flex items-center gap-8 font-display text-sm tracking-wider uppercase">
         <Link href="/" className="hover:text-accent-gold transition-colors">{t.nav.home}</Link>
-        <Link href="/projects" className="hover:text-accent-gold transition-colors">{t.nav.portfolio}</Link>
-        <Link href="/marketplace" className="hover:text-accent-gold transition-colors">{t.nav.marketplace}</Link>
-        <Link href="/about" className="hover:text-accent-gold transition-colors">{t.nav.about}</Link>
+        <Link href={Routes.projects.list} className="hover:text-accent-gold transition-colors">{t.nav.portfolio}</Link>
+        <Link href={Routes.fractions.list} className="hover:text-accent-gold transition-colors">{t.nav.marketplace}</Link>
+        <Link href={Routes.about} className="hover:text-accent-gold transition-colors">{t.nav.about}</Link>
       </nav>
       <div className="flex items-center gap-4">
         <button
@@ -52,7 +53,7 @@ export default function Header({ locale, t }: HeaderProps) {
           {locale === 'pt' ? 'EN' : 'PT'}
         </button>
         <Link
-          href="/marketplace"
+          href={Routes.fractions.list}
           className="btn-primary font-display text-xs uppercase tracking-wider px-4 py-2 rounded"
         >
           {t.nav.marketplace}
