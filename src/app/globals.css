@@ -24,6 +24,7 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-display uppercase tracking-[-2px] leading-none;
+    text-wrap: balance;
   }
 }
 
@@ -43,36 +44,6 @@
   animation: revealUp 1s var(--ease-brand) forwards;
 }
 
-@layer base {
-  :root {
-    --primary-bg: #101010;
-    --secondary-bg: #1A1A1A;
-    --accent-gold: #edb154;
-    --text-primary: #FFFFFF;
-    --text-secondary: #CCCCCC;
-    
-    --font-archivo: var(--font-archivo);
-    --font-archivo-black: var(--font-archivo-black);
-    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  body {
-    background-color: var(--primary-bg);
-    color: var(--text-primary);
-    font-family: var(--font-archivo), sans-serif;
-    min-height: 100vh;
-  }
-}
-
-/* Custom Design Tokens & Classes */
-.font-main {
-  font-family: var(--font-archivo), sans-serif;
-}
-
-.font-display {
-  font-family: var(--font-archivo-black), sans-serif;
-}
-
 /* Vanguard Images: Desaturated by default, color on hover + slight scale */
 .vanguard-image-container {
   overflow: hidden;
@@ -81,7 +52,7 @@
 
 .vanguard-image {
   filter: grayscale(100%);
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.6s var(--ease-brand), filter 0.6s var(--ease-brand);
 }
 
 .vanguard-image-container:hover .vanguard-image {
@@ -91,14 +62,18 @@
 
 /* Accent buttons */
 .btn-primary {
-  background-color: var(--accent-gold);
+  background-color: var(--color-accent-gold);
   color: #101010;
   font-weight: 700;
-  transition: var(--transition);
+  transition: background-color 0.4s var(--ease-brand), transform 0.4s var(--ease-brand);
 }
 .btn-primary:hover {
   background-color: #db9c3b;
   transform: translateY(-2px);
+}
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 2px;
 }
 
 .btn-secondary {
@@ -106,12 +81,16 @@
   border: 2px solid #FFFFFF;
   color: #FFFFFF;
   font-weight: 700;
-  transition: var(--transition);
+  transition: background-color 0.4s var(--ease-brand), color 0.4s var(--ease-brand), transform 0.4s var(--ease-brand);
 }
 .btn-secondary:hover {
   background-color: #FFFFFF;
   color: #101010;
   transform: translateY(-2px);
+}
+.btn-secondary:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
 
 /* Custom layout helpers */
@@ -130,5 +109,20 @@
 @media (min-width: 768px) {
   .asymmetrical-grid-right {
     grid-column: span 4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-reveal {
+    animation: none;
+    opacity: 1;
+  }
+  .vanguard-image {
+    transition: none;
+  }
+  .btn-primary,
+  .btn-secondary {
+    transition: none;
+    transform: none;
   }
 }

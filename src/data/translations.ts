@@ -6,6 +6,13 @@ export interface TranslationDictionary {
     about: string;
     contact: string;
   };
+  home: {
+    heroTitle1: string;
+    heroTitle2: string;
+    heroTitle3: string;
+    description: string;
+    portfolioTitle: string;
+  };
   common: {
     slogan: string;
     available: string;
@@ -62,6 +69,13 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       about: "Sobre Nós",
       contact: "Contactos",
     },
+    home: {
+      heroTitle1: "CONSTRUÇÃO DE",
+      heroTitle2: "VANGUARDA",
+      heroTitle3: "EM VISEU",
+      description: "Casas sustentáveis e apartamentos premium desenhados ao detalhe. Mais de 30 anos de experiência transformados em lares para a sua família.",
+      portfolioTitle: "O Nosso Portfólio",
+    },
     common: {
       slogan: "de família para família",
       available: "Disponível",
@@ -115,6 +129,13 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       marketplace: "Available Units",
       about: "About Us",
       contact: "Contacts",
+    },
+    home: {
+      heroTitle1: "CONSTRUCTION OF",
+      heroTitle2: "VANGUARD",
+      heroTitle3: "IN VISEU",
+      description: "Sustainable houses and premium apartments designed in detail. More than 30 years of experience turned into homes for your family.",
+      portfolioTitle: "Our Portfolio",
     },
     common: {
       slogan: "from family to family",

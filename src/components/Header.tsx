@@ -1,34 +1,32 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
 import { useTransition } from 'react';
-import { setLanguageAction } from '@/app/actions';
-import { TranslationDictionary } from '@/data/translations';
+import { useLocale, useTranslations } from 'next-intl';
+import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { Routes } from '@/config/routes';
 import { ImagesBasePath } from '@/config/constants';
 
-interface HeaderProps {
-  locale: 'pt' | 'en';
-  t: TranslationDictionary;
-}
-
-export default function Header({ locale, t }: Readonly<HeaderProps>) {
+export default function Header() {
+  const locale = useLocale();
+  const t = useTranslations();
+  const pathname = usePathname();
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   const toggleLanguage = () => {
     const nextLocale = locale === 'pt' ? 'en' : 'pt';
-    startTransition(async () => {
-      await setLanguageAction(nextLocale);
+    startTransition(() => {
+      router.replace(pathname, { locale: nextLocale });
     });
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#101010]/90 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-primary-bg/90 backdrop-blur-md border-b border-border px-6 py-4 flex items-center justify-between">
       <Link href="/" className="flex items-center gap-4">
         <Image
           src={`${ImagesBasePath}/logo.png`}
-          alt="Fração Ilustre Logo"
+          alt=""
           width={48}
           height={48}
           className="object-contain"
@@ -39,10 +37,10 @@ export default function Header({ locale, t }: Readonly<HeaderProps>) {
         </span>
       </Link>
       <nav className="hidden md:flex items-center gap-8 font-display text-sm tracking-wider uppercase">
-        <Link href="/" className="hover:text-accent-gold transition-colors">{t.nav.home}</Link>
-        <Link href={Routes.projects.list} className="hover:text-accent-gold transition-colors">{t.nav.portfolio}</Link>
-        <Link href={Routes.fractions.list} className="hover:text-accent-gold transition-colors">{t.nav.marketplace}</Link>
-        <Link href={Routes.about} className="hover:text-accent-gold transition-colors">{t.nav.about}</Link>
+        <Link href="/" className="hover:text-accent-gold transition-colors">{t('nav.home')}</Link>
+        <Link href={Routes.projects.list as any} className="hover:text-accent-gold transition-colors">{t('nav.portfolio')}</Link>
+        <Link href={Routes.fractions.list as any} className="hover:text-accent-gold transition-colors">{t('nav.marketplace')}</Link>
+        <Link href={Routes.about as any} className="hover:text-accent-gold transition-colors">{t('nav.about')}</Link>
       </nav>
       <div className="flex items-center gap-4">
         <button
@@ -53,10 +51,10 @@ export default function Header({ locale, t }: Readonly<HeaderProps>) {
           {locale === 'pt' ? 'EN' : 'PT'}
         </button>
         <Link
-          href={Routes.fractions.list}
+          href={Routes.fractions.list as any}
           className="btn-primary font-display text-xs uppercase tracking-wider px-4 py-2 rounded"
         >
-          {t.nav.marketplace}
+          {t('nav.marketplace')}
         </Link>
       </div>
     </header>

@@ -1,1 +1,1 @@
-export const ImagesBasePath = 'images';
+export const ImagesBasePath = '/fracao-ilustre-website/images';

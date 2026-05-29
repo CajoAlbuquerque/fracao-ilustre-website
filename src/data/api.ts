@@ -1,7 +1,7 @@
+import { cache } from 'react';
 import { projects } from "./projects";
 import { fractions } from "./fractions";
-import { translations, TranslationDictionary } from "./translations";
-import { Project, Fraction } from "./types";
+import { Fraction, Project } from "./types";
 
 export interface FractionFilters {
   projectSlug?: string;
@@ -11,32 +11,25 @@ export interface FractionFilters {
 }
 
 /**
- * Get the static translation dictionary for the current language.
- */
-export function getTranslations(locale: "pt" | "en" = "pt"): TranslationDictionary {
-  return translations[locale] || translations.pt;
-}
-
-/**
  * Retrieve all Projects.
  */
-export async function getProjects(): Promise<Project[]> {
+export const getProjects = cache(async (): Promise<Project[]> => {
   return projects;
-}
+});
 
 /**
  * Retrieve a specific Project by its slug.
  */
-export async function getProjectBySlug(slug: string): Promise<Project | null> {
+export const getProjectBySlug = cache(async (slug: string): Promise<Project | null> => {
   const project = projects.find((p) => p.slug === slug);
   return project || null;
-}
+});
 
 /**
  * Retrieve Fractions based on optional search and layout filters.
  * Filters out "sold" fractions by default if needed, or returns all depending on options.
  */
-export async function getFractions(filters?: FractionFilters): Promise<Fraction[]> {
+export const getFractions = cache(async (filters?: FractionFilters): Promise<Fraction[]> => {
   let list = [...fractions];
 
   if (filters) {
@@ -55,12 +48,12 @@ export async function getFractions(filters?: FractionFilters): Promise<Fraction[
   }
 
   return list;
-}
+});
 
 /**
  * Retrieve a specific Fraction by its unique ID.
  */
-export async function getFractionById(id: string): Promise<Fraction | null> {
+export const getFractionById = cache(async (id: string): Promise<Fraction | null> => {
   const fraction = fractions.find((f) => f.id === id);
   return fraction || null;
-}
+});
