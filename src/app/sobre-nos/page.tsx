@@ -1,6 +1,6 @@
 // import { cookies } from 'next/headers';
 import Image from 'next/image';
-import { ImagesBasePath } from '@/app/constants';
+import { ImagesBasePath } from '@/config/constants';
 import { getTranslations } from '@/data/api';
 
 export default async function AboutPage() {

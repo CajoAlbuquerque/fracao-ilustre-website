@@ -1,5 +1,5 @@
 import { Project } from "./types";
-import { ImagesBasePath } from '@/app/constants';
+import { ImagesBasePath } from '@/config/constants';
 
 export const projects: Project[] = [
   {
