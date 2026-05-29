@@ -4,7 +4,7 @@ import { Archivo, Archivo_Black } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getTranslations } from "@/data/api";
-import "../globals.css";
+import "@/app/globals.css";
 
 const archivo = Archivo({
   variable: "--font-archivo",
