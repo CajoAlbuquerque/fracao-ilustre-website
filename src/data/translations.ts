@@ -33,6 +33,10 @@ export interface TranslationDictionary {
     callUs: string;
     backToMarket: string;
     backToPortfolio: string;
+    details: string;
+    features: string;
+    status: string;
+    completion: string;
   };
   about: {
     title: string;
@@ -96,6 +100,10 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       callUs: "Ligar para Nós",
       backToMarket: "Voltar às Frações",
       backToPortfolio: "Voltar ao Portfólio",
+      details: "Detalhes",
+      features: "Características",
+      status: "Estado",
+      completion: "Conclusão",
     },
     about: {
       title: "Sobre Nós",
@@ -157,6 +165,10 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       callUs: "Call Us",
       backToMarket: "Back to Units",
       backToPortfolio: "Back to Portfolio",
+      details: "Details",
+      features: "Features",
+      status: "Status",
+      completion: "Completion",
     },
     about: {
       title: "About Us",
