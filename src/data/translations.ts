@@ -63,6 +63,12 @@ export interface TranslationDictionary {
     submitBtn: string;
     successMsg: string;
   };
+  catalog: {
+    filters: string;
+    all: string;
+    clearFilters: string;
+    noResults: string;
+  };
 }
 
 export const translations: { pt: TranslationDictionary; en: TranslationDictionary } = {
@@ -131,6 +137,12 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       submitBtn: "Enviar Pedido de Informação",
       successMsg: "Obrigado! O seu pedido de informação foi enviado com sucesso. Entraremos em contacto brevemente.",
     },
+    catalog: {
+      filters: "Filtros",
+      all: "Todos",
+      clearFilters: "Limpar Filtros",
+      noResults: "Não foram encontradas frações com os filtros selecionados.",
+    },
   },
   en: {
     nav: {
@@ -196,6 +208,12 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       messageLabel: "Message or Questions",
       submitBtn: "Send Request Information",
       successMsg: "Thank you! Your inquiry was successfully sent. We will get in touch shortly.",
+    },
+    catalog: {
+      filters: "Filters",
+      all: "All",
+      clearFilters: "Clear Filters",
+      noResults: "No units found matching the selected filters.",
     },
   },
 };
