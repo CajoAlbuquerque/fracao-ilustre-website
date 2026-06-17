@@ -33,11 +33,17 @@ export interface TranslationDictionary {
     callUs: string;
     backToMarket: string;
     backToPortfolio: string;
+    backToProject: string;
+    back: string;
     details: string;
     features: string;
     status: string;
     completion: string;
     availableFractions: string;
+    floorPlan: string;
+    grossArea: string;
+    usefulArea: string;
+    gallery: string;
   };
   about: {
     title: string;
@@ -107,17 +113,23 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       callUs: "Ligar para Nós",
       backToMarket: "Voltar às Frações",
       backToPortfolio: "Voltar ao Portfólio",
+      backToProject: "Voltar para '{project}'",
+      back: "Voltar",
       details: "Detalhes",
       features: "Características",
       status: "Estado",
       completion: "Conclusão",
       availableFractions: "Frações Disponíveis",
+      floorPlan: "Planta",
+      grossArea: "Área Bruta",
+      usefulArea: "Área Útil",
+      gallery: "Galeria",
     },
     about: {
       title: "Sobre Nós",
       subtitle: "Uma herança de qualidade, engenharia rigorosa e compromisso familiar.",
       foundersTitle: "De Família para Família",
-      foundersStory: "Fundada por Jorge (Engenheiro Civil, Politécnico de Coimbra) e Luísa (Engenheira Mecânica e Gestora, Faculdade de Coimbra), a Fração Ilustre nasceu para traduzir mais de 30 anos de experiência acumulada no setor em casas reais e prontas a habitar. Combinamos o rigor técnico da engenharia com uma postura próxima dos nossos clientes, tratando cada projeto com a dedicação e o carinho com que construiríamos uma casa para um filho.",
+      foundersStory: "Fundada por Jorge (Engenheiro Civil, Politécnico de Coimbra) e Luísa (Engenheira Mecânica, Faculdade de Coimbra), a Fração Ilustre nasceu para traduzir mais de 30 anos de experiência acumulada no setor em casas reais e prontas a habitar. Combinamos o rigor técnico da engenharia com uma postura próxima dos nossos clientes, tratando cada projeto com a dedicação e o carinho com que construiríamos uma casa para um filho.",
       qualityTitle: "Construção de Vanguarda e Qualidade Absoluta",
       qualityText: "Para nós, a construção civil não é apenas empilhar tijolos — é criar soluções habitacionais eficientes e sustentáveis. Focamo-nos na sustentabilidade regional de Viseu através da introdução de painéis solares fotovoltaicos, bombas de calor modernas de alta performance e isolamentos térmico-acústicos de vanguarda que reduzem custos e aumentam a qualidade de vida. Cada detalhe das nossas obras é fiscalizado de perto pelos fundadores, garantindo padrões de construção que poucas empresas conseguem igualar.",
       metrics: {
@@ -179,17 +191,23 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       callUs: "Call Us",
       backToMarket: "Back to Units",
       backToPortfolio: "Back to Portfolio",
+      backToProject: "Back to '{project}'",
+      back: "Back",
       details: "Details",
       features: "Features",
       status: "Status",
       completion: "Completion",
       availableFractions: "Available Units",
+      floorPlan: "Floor Plan",
+      grossArea: "Gross Area",
+      usefulArea: "Useful Area",
+      gallery: "Gallery",
     },
     about: {
       title: "About Us",
       subtitle: "A heritage of quality, rigorous engineering, and family commitment.",
       foundersTitle: "From Family to Family",
-      foundersStory: "Founded by Jorge (Civil Engineer, Politécnico de Coimbra) and Luísa (Mechanical Engineer and Manager, Faculty of Coimbra), Fração Ilustre was born to translate more than 30 years of construction experience into actual, premium homes. We combine technical engineering rigor with an approachable client relationship, treating each project with the same care and devotion we would show if we were building a home for our own child.",
+      foundersStory: "Founded by Jorge (Civil Engineer, Politécnico de Coimbra) and Luísa (Mechanical Engineer, Faculty of Coimbra), Fração Ilustre was born to translate more than 30 years of construction experience into actual, premium homes. We combine technical engineering rigor with an approachable client relationship, treating each project with the same care and devotion we would show if we were building a home for our own child.",
       qualityTitle: "Vanguard Construction & Absolute Quality",
       qualityText: "For us, construction is not just about stacking bricks — it is about creating efficient, sustainable housing solutions. We focus on Viseu's regional sustainability by integrating photovoltaic solar panels, high-performance modern heat pumps, and cutting-edge thermal and acoustic insulation that cut costs and raise standard of living. Every detail of our work is closely inspected by the founders, guaranteeing construction standards that few companies can match.",
       metrics: {

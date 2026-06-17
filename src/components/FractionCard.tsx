@@ -13,9 +13,9 @@ interface FractionCardProps {
 const FractionCard: React.FC<FractionCardProps> = ({ fraction, className }) => {
   const t = useTranslations();
   const locale = useLocale() as 'pt' | 'en';
-  
+
   const displayImage = fraction.images[0] || fraction.floorPlan;
-  
+
   return (
     <div key={fraction.id} className={className}>
       <Link href={Routes.fractions.detail(fraction.id) as any} className="group block">
