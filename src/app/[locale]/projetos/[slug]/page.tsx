@@ -1,10 +1,11 @@
-import { getProjectBySlug, getProjects } from '@/data/api';
+import { getProjectBySlug, getProjects, getFractions } from '@/data/api';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { Routes } from '@/config/routes';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LocalizedString } from '@/data/types';
+import FractionCard from '@/components/FractionCard';
 
 export async function generateStaticParams() {
   const projects = await getProjects();
@@ -22,6 +23,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   }
 
   const projectLocale = locale as keyof LocalizedString;
+  const fractions = await getFractions({ projectSlug: slug });
 
   return (
     <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
@@ -75,6 +77,19 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           </div>
         </div>
       </div>
+
+      {fractions.length > 0 && (
+        <div className="mt-24">
+          <h2 className="font-display text-3xl md:text-4xl uppercase text-white border-b border-border pb-4 mb-10">
+            {t('common.availableFractions')}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {fractions.map((fraction) => (
+              <FractionCard key={fraction.id} fraction={fraction} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

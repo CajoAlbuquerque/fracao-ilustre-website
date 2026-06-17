@@ -37,6 +37,7 @@ export interface TranslationDictionary {
     features: string;
     status: string;
     completion: string;
+    availableFractions: string;
   };
   about: {
     title: string;
@@ -104,6 +105,7 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       features: "Características",
       status: "Estado",
       completion: "Conclusão",
+      availableFractions: "Frações Disponíveis",
     },
     about: {
       title: "Sobre Nós",
@@ -169,6 +171,7 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       features: "Features",
       status: "Status",
       completion: "Completion",
+      availableFractions: "Available Units",
     },
     about: {
       title: "About Us",
