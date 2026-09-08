@@ -68,6 +68,7 @@ export interface TranslationDictionary {
     messageLabel: string;
     submitBtn: string;
     successMsg: string;
+    privacyConsent: string;
   };
   catalog: {
     filters: string;
@@ -156,6 +157,7 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       messageLabel: "Mensagem ou Dúvidas",
       submitBtn: "Enviar Pedido de Informação",
       successMsg: "Obrigado! O seu pedido de informação foi enviado com sucesso. Entraremos em contacto brevemente.",
+      privacyConsent: "Consinto a utilização dos meus dados para ser contactado sobre este assunto.",
     },
     catalog: {
       filters: "Filtros",
@@ -242,6 +244,7 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       messageLabel: "Message or Questions",
       submitBtn: "Send Request Information",
       successMsg: "Thank you! Your inquiry was successfully sent. We will get in touch shortly.",
+      privacyConsent: "I consent to the use of my data to be contacted regarding this matter.",
     },
     catalog: {
       filters: "Filters",
