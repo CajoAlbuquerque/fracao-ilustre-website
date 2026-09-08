@@ -75,6 +75,14 @@ export interface TranslationDictionary {
     clearFilters: string;
     noResults: string;
   };
+  imageGallery: {
+    openImage: string;
+    lightboxLabel: string;
+    closeLightbox: string;
+    previousImage: string;
+    nextImage: string;
+    imageCounter: string;
+  };
 }
 
 export const translations: { pt: TranslationDictionary; en: TranslationDictionary } = {
@@ -155,6 +163,14 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       clearFilters: "Limpar Filtros",
       noResults: "Não foram encontradas frações com os filtros selecionados.",
     },
+    imageGallery: {
+      openImage: "Abrir imagem {index}: {alt}",
+      lightboxLabel: "Galeria de imagens em ecrã completo",
+      closeLightbox: "Fechar galeria",
+      previousImage: "Imagem anterior",
+      nextImage: "Imagem seguinte",
+      imageCounter: "Imagem {current} de {total}",
+    },
   },
   en: {
     nav: {
@@ -232,6 +248,14 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       all: "All",
       clearFilters: "Clear Filters",
       noResults: "No units found matching the selected filters.",
+    },
+    imageGallery: {
+      openImage: "Open image {index}: {alt}",
+      lightboxLabel: "Full-screen image gallery",
+      closeLightbox: "Close gallery",
+      previousImage: "Previous image",
+      nextImage: "Next image",
+      imageCounter: "Image {current} of {total}",
     },
   },
 };
