@@ -5,7 +5,8 @@ import { useTransition } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { Routes } from '@/config/routes';
-import { ImagesBasePath } from '@/config/constants';
+
+import logoImg from '@images/logo.png';
 
 export default function Header() {
   const locale = useLocale();
@@ -25,7 +26,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-primary-bg/90 backdrop-blur-md border-b border-border px-6 py-4 flex items-center justify-between">
       <Link href="/" className="flex items-center gap-4">
         <Image
-          src={`${ImagesBasePath}/logo.png`}
+          src={logoImg}
           alt=""
           width={48}
           height={48}

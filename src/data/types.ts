@@ -1,10 +1,12 @@
+import { StaticImageData } from "next/image";
+
 export interface LocalizedString {
   pt: string;
   en: string;
 }
 
 export interface ImageData {
-  url: string;
+  url: string | StaticImageData;
   alt: LocalizedString;
 }
 

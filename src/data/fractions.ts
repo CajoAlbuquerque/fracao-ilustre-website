@@ -1,5 +1,8 @@
 import { Fraction } from "./types";
-import { ImagesBasePath } from '@/config/constants';
+
+import livingRoomImg from '@images/colina-verde-living-room.jpg';
+import kitchenImg from '@images/colina-verde-kitchen.jpg';
+import bedroomImg from '@images/colina-verde-bedroom.jpg';
 
 export const fractions: Fraction[] = [
   {
@@ -40,7 +43,7 @@ export const fractions: Fraction[] = [
       en: "Spacious and bright 3-bedroom apartment, located in the prestigious Fração Ilustre 1 building. This property stands out for its high-quality modern finishes, excellent thermal and acoustic efficiency, and a functional layout designed for your family's modern living.",
     },
     floorPlan: {
-      url: `${ImagesBasePath}/colina-verde-living-room.jpg`, // placeholder floor plan
+      url: livingRoomImg, // placeholder floor plan
       alt: {
         pt: "Planta baixa detalhada do Apartamento 3A mostrando a distribuição dos quartos e salas",
         en: "Detailed floor plan of Apartment 3A showing bedroom and living room layout",
@@ -48,14 +51,14 @@ export const fractions: Fraction[] = [
     },
     images: [
       {
-        url: `${ImagesBasePath}/colina-verde-kitchen.jpg`,
+        url: kitchenImg,
         alt: {
           pt: "Cozinha moderna com ilha central e acabamentos em madeira escura",
           en: "Modern kitchen with center island and dark wood finishes",
         },
       },
       {
-        url: `${ImagesBasePath}/colina-verde-living-room.jpg`,
+        url: livingRoomImg,
         alt: {
           pt: "Sala de estar ampla integrada com a cozinha em plano aberto",
           en: "Spacious living room integrated with open-plan kitchen",
@@ -101,7 +104,7 @@ export const fractions: Fraction[] = [
       en: "Vanguard villa in Fragosela de Baixo. Project designed specifically under the pillars of environmental sustainability and cost efficiency, this villa offers a luxurious interior, private garden for children, and all the tranquility a family seeks near Viseu.",
     },
     floorPlan: {
-      url: `${ImagesBasePath}/colina-verde-bedroom.jpg`, // placeholder floor plan
+      url: bedroomImg, // placeholder floor plan
       alt: {
         pt: "Planta baixa da Moradia A com indicação das áreas de estar e quartos",
         en: "Floor plan of Villa A with layout of living spaces and bedrooms",
@@ -147,7 +150,7 @@ export const fractions: Fraction[] = [
       en: "The twin home of Villa A, featuring identical premium finishes and a strong focus on sustainability and insulation. Currently reserved.",
     },
     floorPlan: {
-      url: `${ImagesBasePath}/colina-verde-bedroom.jpg`,
+      url: bedroomImg,
       alt: {
         pt: "Planta baixa da Moradia B com indicação das áreas de estar e quartos",
         en: "Floor plan of Villa B with layout of living spaces and bedrooms",

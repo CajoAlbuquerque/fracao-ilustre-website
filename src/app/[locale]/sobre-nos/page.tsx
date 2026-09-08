@@ -1,6 +1,8 @@
 import Image from 'next/image';
-import { ImagesBasePath } from '@/config/constants';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+
+import kitchenImg from '@images/colina-verde-kitchen.jpg';
+import bedroomImg from '@images/colina-verde-bedroom.jpg';
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -27,7 +29,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 </div>
                 <div className="md:col-span-5 relative h-[400px] border border-white/10 rounded overflow-hidden">
                     <Image
-                        src={`${ImagesBasePath}/colina-verde-kitchen.jpg`}
+                        src={kitchenImg}
                         alt=""
                         fill
                         className="object-cover filter grayscale"
@@ -38,7 +40,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-24 flex-row-reverse">
                 <div className="md:col-span-5 relative h-[400px] border border-white/10 rounded overflow-hidden md:order-first">
                     <Image
-                        src={`${ImagesBasePath}/colina-verde-bedroom.jpg`}
+                        src={bedroomImg}
                         alt=""
                         fill
                         className="object-cover filter grayscale"

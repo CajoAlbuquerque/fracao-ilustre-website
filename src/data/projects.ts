@@ -1,5 +1,8 @@
 import { Project } from "./types";
-import { ImagesBasePath } from '@/config/constants';
+
+import livingRoomImg from '@images/colina-verde-living-room.jpg';
+import kitchenImg from '@images/colina-verde-kitchen.jpg';
+import bedroomImg from '@images/colina-verde-bedroom.jpg';
 
 export const projects: Project[] = [
   {
@@ -31,14 +34,14 @@ export const projects: Project[] = [
     },
     images: [
       {
-        url: `${ImagesBasePath}/colina-verde-kitchen.jpg`,
+        url: kitchenImg,
         alt: {
           pt: "Cozinha premium da Fração Ilustre 1 com acabamentos modernos em madeira e pedra",
           en: "Premium kitchen of Fração Ilustre 1 with modern wood and stone finishes",
         },
       },
       {
-        url: `${ImagesBasePath}/colina-verde-living-room.jpg`,
+        url: livingRoomImg,
         alt: {
           pt: "Sala de estar ampla da Fração Ilustre 1 com iluminação embutida e grandes janelas",
           en: "Spacious living room of Fração Ilustre 1 with recessed lighting and large windows",
@@ -75,7 +78,7 @@ export const projects: Project[] = [
     },
     images: [
       {
-        url: `${ImagesBasePath}/colina-verde-bedroom.jpg`,
+        url: bedroomImg,
         alt: {
           pt: "Quarto luminoso com design minimalista e acabamentos em madeira natural",
           en: "Luminous bedroom with minimalist design and natural wood finishes",

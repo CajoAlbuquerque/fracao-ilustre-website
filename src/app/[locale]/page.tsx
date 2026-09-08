@@ -1,10 +1,11 @@
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { Routes } from '@/config/routes';
-import { ImagesBasePath } from '@/config/constants';
 import ProjectCard from '@/components/ProjectCard';
 import { getProjects } from '@/data/api';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+
+import livingRoomImg from '@images/colina-verde-living-room.jpg';
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -19,7 +20,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         {/* Background photo fallback */}
         <div className="absolute inset-0 z-0 opacity-40">
           <Image
-            src={`${ImagesBasePath}/colina-verde-living-room.jpg`}
+            src={livingRoomImg}
             alt=""
             fill
             className="object-cover filter grayscale"
