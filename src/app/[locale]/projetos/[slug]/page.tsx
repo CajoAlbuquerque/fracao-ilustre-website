@@ -26,7 +26,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   const fractions = await getFractions({ projectSlug: slug });
 
   return (
-    <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
+    <div className="pt-8 md:pt-20 pb-20 max-w-4xl mx-auto px-6">
       <Link href={Routes.projects.list as any} className="text-accent-gold uppercase text-sm tracking-widest hover:text-white transition-colors mb-8 inline-block">
         &larr; {t('common.backToPortfolio')}
       </Link>

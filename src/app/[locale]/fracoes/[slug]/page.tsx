@@ -5,13 +5,14 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LocalizedString } from '@/data/types';
 import ImageGallery from '@/components/ImageGallery';
 import BackButton from '@/components/BackButton';
+import InquiryEngine from '@/components/InquiryEngine';
 
 export async function generateStaticParams() {
   const fractions = await getFractions();
   return fractions.map((fraction) => ({ slug: fraction.id }));
 }
 
-export default async function FractionDetailPage({ params }: { params: Promise<{ locale: string; slug: string }>}) {
+export default async function FractionDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations();
@@ -23,7 +24,7 @@ export default async function FractionDetailPage({ params }: { params: Promise<{
 
   const fractionLocale = locale as keyof LocalizedString;
   const project = await getProjectBySlug(fraction.projectSlug);
-  
+
   if (!project) {
     notFound();
   }
@@ -31,9 +32,9 @@ export default async function FractionDetailPage({ params }: { params: Promise<{
   const displayImages = fraction.images.length > 0 ? fraction.images : project.images;
 
   return (
-    <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
-      <BackButton fallbackText={t('common.back')}/>
-      
+    <div className="pt-8 md:pt-20 pb-20 max-w-4xl mx-auto px-6">
+      <BackButton fallbackText={t('common.back')} />
+
       <div className="mb-12">
         <h1 className="font-display text-5xl md:text-6xl uppercase text-white mb-4">
           {fraction.reference[fractionLocale]}
@@ -74,10 +75,8 @@ export default async function FractionDetailPage({ params }: { params: Promise<{
               </div>
             </div>
           )}
-
-          <ImageGallery images={displayImages} />
         </div>
-        
+
         <div className="space-y-6">
           <h2 className="font-display text-2xl uppercase text-white border-b border-border pb-4">{t('common.features')}</h2>
           <ul className="space-y-3">
@@ -88,7 +87,7 @@ export default async function FractionDetailPage({ params }: { params: Promise<{
               </li>
             ))}
           </ul>
-          
+
           <div className="mt-8 p-6 border border-border bg-primary-bg/50 rounded space-y-4">
             <div>
               <p className="text-sm text-zinc-400 uppercase tracking-widest mb-1">{t('common.status')}</p>
@@ -96,13 +95,13 @@ export default async function FractionDetailPage({ params }: { params: Promise<{
                 {fraction.status === 'sold' ? t('common.sold') : fraction.status === 'reserved' ? t('common.reserved') : t('common.available')}
               </p>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="text-sm text-zinc-400 uppercase tracking-widest mb-1">{t('common.grossArea')}</p>
                 <p className="text-white text-lg">{fraction.grossArea} m²</p>
               </div>
-              
+
               <div>
                 <p className="text-sm text-zinc-400 uppercase tracking-widest mb-1">{t('common.usefulArea')}</p>
                 <p className="text-white text-lg">{fraction.usefulArea} m²</p>
@@ -121,6 +120,13 @@ export default async function FractionDetailPage({ params }: { params: Promise<{
               </div>
             )}
           </div>
+        </div>
+      </div>
+      <div>
+        <ImageGallery images={displayImages} />
+
+        <div className="mt-20">
+          <InquiryEngine />
         </div>
       </div>
     </div>

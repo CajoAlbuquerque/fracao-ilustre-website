@@ -9,7 +9,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
   const projects = await getProjects();
 
   return (
-    <div className="pt-32 pb-20 max-w-6xl mx-auto px-6">
+    <div className="pt-8 md:pt-20 pb-20 max-w-6xl mx-auto px-6">
       <h1 className="font-display text-4xl md:text-5xl uppercase text-white mb-12">
         {t('home.portfolioTitle')}
       </h1>
