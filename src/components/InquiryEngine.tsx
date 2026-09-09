@@ -41,8 +41,8 @@ export default function InquiryEngine({ className = '' }: InquiryEngineProps) {
     if (!validate()) return;
 
     // Contact target configurations
-    const targetEmail = 'carlosjo.da@gmail.com';
-    const targetPhone = '31657479978';
+    const targetEmail = process.env.NEXT_PUBLIC_TARGET_EMAIL || '';
+    const targetPhone = process.env.NEXT_PUBLIC_TARGET_PHONE || '';
 
     const subject = `Inquiry from ${name}`;
     let body = `Name: ${name}\n`;
