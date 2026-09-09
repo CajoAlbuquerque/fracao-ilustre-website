@@ -77,7 +77,7 @@ export default async function FractionDetailPage({ params }: { params: Promise<{
           )}
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-6 order-first md:order-none">
           <h2 className="font-display text-2xl uppercase text-white border-b border-border pb-4">{t('common.features')}</h2>
           <ul className="space-y-3">
             {fraction.features[fractionLocale].map((feature, idx) => (
