@@ -97,7 +97,7 @@
 .asymmetrical-grid-left {
   grid-column: span 12;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .asymmetrical-grid-left {
     grid-column: span 8;
   }
@@ -106,7 +106,7 @@
 .asymmetrical-grid-right {
   grid-column: span 12;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .asymmetrical-grid-right {
     grid-column: span 4;
   }
