@@ -66,7 +66,7 @@ export default function InquiryEngine({ className = '' }: InquiryEngineProps) {
 
   if (submitted) {
     return (
-      <div className={`p-8 bg-secondary-bg border border-border rounded text-center ${className}`}>
+      <div className={`p-4 md:p-8 bg-secondary-bg border border-border rounded text-center ${className}`}>
         <h3 className="font-display text-2xl uppercase mb-4 text-white">{t('contact.title')}</h3>
         <p className="text-accent-gold">{t('contact.successMsg')}</p>
         <button 
@@ -86,7 +86,7 @@ export default function InquiryEngine({ className = '' }: InquiryEngineProps) {
   }
 
   return (
-    <div className={`p-8 bg-secondary-bg border border-border rounded ${className}`}>
+    <div className={`p-4 md:p-8 bg-secondary-bg border border-border rounded ${className}`}>
       <h3 className="font-display text-3xl uppercase mb-2 text-white">{t('contact.title')}</h3>
       <p className="text-zinc-400 mb-8">{t('contact.subtitle')}</p>
       
