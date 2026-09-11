@@ -96,7 +96,7 @@ export default function Header() {
           className="object-contain"
           priority
         />
-        <span className="font-display text-xl uppercase tracking-wider text-white">
+        <span className="font-display text-lg uppercase tracking-wider text-white">
           Fração <span className="text-accent-gold">Ilustre</span>
         </span>
       </Link>
