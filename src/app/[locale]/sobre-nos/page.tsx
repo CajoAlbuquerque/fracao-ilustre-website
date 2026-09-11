@@ -18,7 +18,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 {t('about.subtitle')}
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-12 md:mb-24">
                 <div className="md:col-span-7">
                     <h2 className="font-display text-2xl md:text-3xl uppercase text-white mb-6">
                         {t('about.foundersTitle')}
@@ -32,21 +32,21 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                         src={kitchenImg}
                         alt=""
                         fill
-                        className="object-cover filter grayscale"
+                        className="object-cover filter"
                     />
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-24 flex-row-reverse">
-                <div className="md:col-span-5 relative h-[400px] border border-white/10 rounded overflow-hidden md:order-first">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-12 md:mb-24 flex-row-reverse">
+                <div className="md:col-span-5 relative h-[400px] border border-white/10 rounded overflow-hidden order-last md:order-first">
                     <Image
                         src={bedroomImg}
                         alt=""
                         fill
-                        className="object-cover filter grayscale"
+                        className="object-cover filter"
                     />
                 </div>
-                <div className="md:col-span-7">
+                <div className="md:col-span-7 order-first md:order-none">
                     <h2 className="font-display text-2xl md:text-3xl uppercase text-white mb-6">
                         {t('about.qualityTitle')}
                     </h2>
