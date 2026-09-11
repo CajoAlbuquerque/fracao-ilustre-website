@@ -36,7 +36,7 @@ export default async function FractionDetailPage({ params }: { params: Promise<{
       <BackButton fallbackText={t('common.back')} />
 
       <div className="mb-12">
-        <h1 className="font-display text-5xl md:text-6xl uppercase text-white mb-4">
+        <h1 className="font-display text-3xl sm:text-4xl md:text-6xl uppercase text-white mb-4">
           {fraction.reference[fractionLocale]}
         </h1>
         <p className="text-zinc-400 text-lg">
@@ -77,7 +77,7 @@ export default async function FractionDetailPage({ params }: { params: Promise<{
           )}
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-6 order-first md:order-none">
           <h2 className="font-display text-2xl uppercase text-white border-b border-border pb-4">{t('common.features')}</h2>
           <ul className="space-y-3">
             {fraction.features[fractionLocale].map((feature, idx) => (

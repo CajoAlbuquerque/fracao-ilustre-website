@@ -15,12 +15,13 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const [shouldFocusCloseBtn, setShouldFocusCloseBtn] = useState<boolean>(false);
 
   if (images.length <= 0) return null;
 
   const openLightbox = (index: number, button: HTMLButtonElement) => {
     triggerRef.current = button;
-    closeBtnRef.current?.focus();
+    setShouldFocusCloseBtn(true);
     setSelectedIndex(index);
   };
 
@@ -75,10 +76,67 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
 
   // Move focus into the lightbox when it opens
   useEffect(() => {
-    if (selectedIndex !== null) {
+    if (selectedIndex !== null && shouldFocusCloseBtn) {
       closeBtnRef.current?.focus();
+      setShouldFocusCloseBtn(false);
     }
   }, [selectedIndex]);
+
+  // Lock background scrolling when lightbox is open
+  useEffect(() => {
+    if (selectedIndex === null) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [selectedIndex]);
+
+  // Touch swipe support for lightbox navigation
+  useEffect(() => {
+    if (selectedIndex === null) return;
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+
+      // Only respond to horizontal swipes (ignore vertical swipes to not interfere with scroll)
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+        if (deltaX > 0) {
+          // Swipe right -> previous image
+          setSelectedIndex((prev) =>
+            prev !== null ? (prev - 1 + images.length) % images.length : prev
+          );
+        } else {
+          // Swipe left -> next image
+          setSelectedIndex((prev) =>
+            prev !== null ? (prev + 1) % images.length : prev
+          );
+        }
+      }
+    };
+
+    document.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [selectedIndex, images.length]);
 
   return (
     <div className="mt-12">
@@ -122,14 +180,14 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           role="dialog"
           aria-modal="true"
           aria-label={t('imageGallery.lightboxLabel')}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-2 md:p-4 overflow-hidden"
           onClick={closeLightbox}
         >
           <button
             ref={closeBtnRef}
             type="button"
             aria-label={t('imageGallery.closeLightbox')}
-            className="absolute top-6 right-6 text-white/70 hover:text-white text-4xl p-2 focus:outline-none focus:ring-2 focus:ring-white"
+            className="absolute top-2 right-2 md:top-6 md:right-6 text-white/70 hover:text-white text-3xl md:text-4xl p-2 focus:outline-none focus:ring-2 focus:ring-white z-70"
             onClick={closeLightbox}
           >
             <span aria-hidden="true">&times;</span>
@@ -138,14 +196,14 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           <button
             type="button"
             aria-label={t('imageGallery.previousImage')}
-            className="absolute left-4 md:left-12 text-white/50 hover:text-white text-5xl p-4 focus:outline-none focus:ring-2 focus:ring-white"
+            className="absolute left-1 md:left-12 text-white/50 hover:text-white text-3xl md:text-5xl p-2 md:p-4 focus:outline-none focus:ring-2 focus:ring-white z-70"
             onClick={prevImage}
           >
             <span aria-hidden="true">&#8249;</span>
           </button>
 
           <div
-            className="relative w-full max-w-5xl h-[80vh]"
+            className="relative w-full max-w-5xl h-[80vh] z-60"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
@@ -161,14 +219,14 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           <button
             type="button"
             aria-label={t('imageGallery.nextImage')}
-            className="absolute right-4 md:right-12 text-white/50 hover:text-white text-5xl p-4 focus:outline-none focus:ring-2 focus:ring-white"
+            className="absolute right-1 md:right-12 text-white/50 hover:text-white text-3xl md:text-5xl p-2 md:p-4 focus:outline-none focus:ring-2 focus:ring-white z-70"
             onClick={nextImage}
           >
             <span aria-hidden="true">&#8250;</span>
           </button>
 
           <div
-            className="absolute bottom-6 left-0 right-0 text-center text-white/70"
+            className="absolute bottom-2 md:bottom-6 left-0 right-0 text-center text-white/70 text-sm md:text-base"
             aria-live="polite"
           >
             {t('imageGallery.imageCounter', {
