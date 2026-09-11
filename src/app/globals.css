@@ -112,6 +112,59 @@
   }
 }
 
+/* Drawer animations */
+@keyframes drawerSlide {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawerSlideClose {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes drawerBackdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drawerBackdropClose {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-drawer-slide {
+  animation: drawerSlide 0.3s var(--ease-brand) forwards;
+}
+
+.animate-drawer-slide-close {
+  animation: drawerSlideClose 0.3s var(--ease-brand) forwards;
+}
+
+.animate-drawer-backdrop {
+  animation: drawerBackdrop 0.3s var(--ease-brand) forwards;
+}
+
+.animate-drawer-backdrop-close {
+  animation: drawerBackdropClose 0.3s var(--ease-brand) forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-reveal {
     animation: none;
@@ -124,5 +177,13 @@
   .btn-secondary {
     transition: none;
     transform: none;
+  }
+  .animate-drawer-slide,
+  .animate-drawer-slide-close {
+    animation: none;
+  }
+  .animate-drawer-backdrop,
+  .animate-drawer-backdrop-close {
+    animation: none;
   }
 }

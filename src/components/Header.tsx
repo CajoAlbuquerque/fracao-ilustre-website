@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useTransition, useState, useEffect, useCallback, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { Routes } from '@/config/routes';
@@ -15,11 +16,22 @@ export default function Header() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerClosing, setIsDrawerClosing] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
 
+  // Ensure portal is only rendered on client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const toggleLanguage = () => {
     const nextLocale = locale === 'pt' ? 'en' : 'pt';
+
+    if (isDrawerOpen)
+      closeDrawer();
+
     startTransition(() => {
       router.replace(pathname, { locale: nextLocale });
     });
@@ -27,12 +39,19 @@ export default function Header() {
 
   const openDrawer = () => {
     setIsDrawerOpen(true);
+    setIsDrawerClosing(false);
   };
 
   const closeDrawer = useCallback(() => {
-    setIsDrawerOpen(false);
-    // Return focus to hamburger button
-    hamburgerRef.current?.focus();
+    // Start closing animation
+    setIsDrawerClosing(true);
+    // Wait for animation to complete before actually closing
+    setTimeout(() => {
+      setIsDrawerOpen(false);
+      setIsDrawerClosing(false);
+      // Return focus to hamburger button
+      hamburgerRef.current?.focus();
+    }, 300); // Match animation duration
   }, []);
 
   // Close drawer on Escape key
@@ -100,7 +119,7 @@ export default function Header() {
           Fração <span className="text-accent-gold">Ilustre</span>
         </span>
       </Link>
-      
+
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center gap-8 font-display text-sm tracking-wider uppercase">
         <Link href="/" className="hover:text-accent-gold transition-colors">{t('nav.home')}</Link>
@@ -108,7 +127,7 @@ export default function Header() {
         <Link href={Routes.fractions.list as any} className="hover:text-accent-gold transition-colors">{t('nav.marketplace')}</Link>
         <Link href={Routes.about as any} className="hover:text-accent-gold transition-colors">{t('nav.about')}</Link>
       </nav>
-      
+
       {/* Desktop Actions */}
       <div className="hidden md:flex items-center gap-4">
         <button
@@ -148,12 +167,12 @@ export default function Header() {
         </svg>
       </button>
 
-      {/* Mobile Drawer Overlay */}
-      {isDrawerOpen && (
+      {/* Mobile Drawer Overlay - rendered via portal to escape header stacking context */}
+      {mounted && isDrawerOpen && createPortal(
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/70 z-50 md:hidden"
+            className={`fixed inset-0 bg-black/70 z-[60] md:hidden ${isDrawerClosing ? 'animate-drawer-backdrop-close' : 'animate-drawer-backdrop'}`}
             onClick={closeDrawer}
             aria-hidden="true"
           />
@@ -164,7 +183,7 @@ export default function Header() {
             role="dialog"
             aria-modal="true"
             aria-label={t('nav.openMenu')}
-            className="fixed top-0 right-0 bottom-0 w-[280px] bg-primary-bg border-l border-border z-50 md:hidden flex flex-col shadow-2xl"
+            className={`fixed top-0 right-0 bottom-0 w-[280px] bg-primary-bg border-l border-border z-[70] md:hidden flex flex-col shadow-2xl ${isDrawerClosing ? 'animate-drawer-slide-close' : 'animate-drawer-slide'}`}
           >
             {/* Close Button */}
             <div className="flex justify-end p-6 border-b border-border">
@@ -239,7 +258,8 @@ export default function Header() {
               </Link>
             </div>
           </div>
-        </>
+        </>,
+        document.body
       )}
     </header>
   );
