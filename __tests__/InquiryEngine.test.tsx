@@ -63,7 +63,7 @@ describe('InquiryEngine', () => {
     fireEvent.click(screen.getByText('contact.submitBtn'));
 
     expect(windowOpenSpy).toHaveBeenCalledWith(
-      expect.stringContaining('https://wa.me/31657479978?text='),
+      expect.stringContaining('https://wa.me/?text='),
       '_blank'
     );
   });
@@ -96,7 +96,7 @@ describe('InquiryEngine', () => {
     fireEvent.click(screen.getByText('contact.submitBtn'));
 
     expect(windowOpenSpy).toHaveBeenCalledWith(
-      expect.stringContaining('mailto:carlosjo.da@gmail.com?subject='),
+      expect.stringContaining('mailto:?subject='),
       '_blank'
     );
   });
