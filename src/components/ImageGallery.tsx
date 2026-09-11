@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import { ImageData } from '@/data/types';
 import { useLocale, useTranslations } from 'next-intl';
@@ -15,12 +15,13 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const [shouldFocusCloseBtn, setShouldFocusCloseBtn] = useState<boolean>(false);
 
   if (images.length <= 0) return null;
 
   const openLightbox = (index: number, button: HTMLButtonElement) => {
     triggerRef.current = button;
-    closeBtnRef.current?.focus();
+    setShouldFocusCloseBtn(true);
     setSelectedIndex(index);
   };
 
@@ -73,10 +74,11 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [selectedIndex, images.length, closeLightbox]);
 
-    // Move focus into the lightbox when it opens
+  // Move focus into the lightbox when it opens
   useEffect(() => {
-    if (selectedIndex !== null) {
+    if (selectedIndex !== null && shouldFocusCloseBtn) {
       closeBtnRef.current?.focus();
+      setShouldFocusCloseBtn(false);
     }
   }, [selectedIndex]);
 
