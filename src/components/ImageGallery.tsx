@@ -141,7 +141,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
             ref={closeBtnRef}
             type="button"
             aria-label={t('imageGallery.closeLightbox')}
-            className="absolute top-2 right-2 md:top-6 md:right-6 text-white/70 hover:text-white text-3xl md:text-4xl p-2 focus:outline-none focus:ring-2 focus:ring-white"
+            className="absolute top-2 right-2 md:top-6 md:right-6 text-white/70 hover:text-white text-3xl md:text-4xl p-2 focus:outline-none focus:ring-2 focus:ring-white z-70"
             onClick={closeLightbox}
           >
             <span aria-hidden="true">&times;</span>
@@ -150,14 +150,14 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           <button
             type="button"
             aria-label={t('imageGallery.previousImage')}
-            className="absolute left-1 md:left-12 text-white/50 hover:text-white text-3xl md:text-5xl p-2 md:p-4 focus:outline-none focus:ring-2 focus:ring-white"
+            className="absolute left-1 md:left-12 text-white/50 hover:text-white text-3xl md:text-5xl p-2 md:p-4 focus:outline-none focus:ring-2 focus:ring-white z-70"
             onClick={prevImage}
           >
             <span aria-hidden="true">&#8249;</span>
           </button>
 
           <div
-            className="relative w-full max-w-5xl h-[80vh]"
+            className="relative w-full max-w-5xl h-[80vh] z-60"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
@@ -173,7 +173,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           <button
             type="button"
             aria-label={t('imageGallery.nextImage')}
-            className="absolute right-1 md:right-12 text-white/50 hover:text-white text-3xl md:text-5xl p-2 md:p-4 focus:outline-none focus:ring-2 focus:ring-white"
+            className="absolute right-1 md:right-12 text-white/50 hover:text-white text-3xl md:text-5xl p-2 md:p-4 focus:outline-none focus:ring-2 focus:ring-white z-70"
             onClick={nextImage}
           >
             <span aria-hidden="true">&#8250;</span>
