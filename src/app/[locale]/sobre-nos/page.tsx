@@ -32,7 +32,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                         src={kitchenImg}
                         alt=""
                         fill
-                        className="object-cover filter grayscale"
+                        className="object-cover filter"
                     />
                 </div>
             </div>
@@ -43,7 +43,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                         src={bedroomImg}
                         alt=""
                         fill
-                        className="object-cover filter grayscale"
+                        className="object-cover filter"
                     />
                 </div>
                 <div className="md:col-span-7 order-first md:order-none">
