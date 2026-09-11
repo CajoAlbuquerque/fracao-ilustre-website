@@ -5,6 +5,8 @@ export interface TranslationDictionary {
     marketplace: string;
     about: string;
     contact: string;
+    openMenu: string;
+    closeMenu: string;
   };
   home: {
     heroTitle1: string;
@@ -94,6 +96,8 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       marketplace: "Frações Disponíveis",
       about: "Sobre Nós",
       contact: "Contactos",
+      openMenu: "Abrir menu de navegação",
+      closeMenu: "Fechar menu de navegação",
     },
     home: {
       heroTitle1: "CONSTRUÇÃO DE",
@@ -181,6 +185,8 @@ export const translations: { pt: TranslationDictionary; en: TranslationDictionar
       marketplace: "Available Units",
       about: "About Us",
       contact: "Contacts",
+      openMenu: "Open navigation menu",
+      closeMenu: "Close navigation menu",
     },
     home: {
       heroTitle1: "CONSTRUCTION OF",
