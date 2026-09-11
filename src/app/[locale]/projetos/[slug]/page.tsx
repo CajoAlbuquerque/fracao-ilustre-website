@@ -32,7 +32,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       </Link>
       
       <div className="mb-12">
-        <h1 className="font-display text-5xl md:text-6xl uppercase text-white mb-4">
+        <h1 className="font-display text-3xl sm:text-4xl md:text-6xl uppercase text-white mb-4">
           {project.title}
         </h1>
         <p className="text-zinc-400 text-lg">{project.location[projectLocale]}</p>
