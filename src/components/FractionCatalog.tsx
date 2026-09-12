@@ -15,6 +15,7 @@ export default function FractionCatalog({ initialFractions }: FractionCatalogPro
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [typologyFilter, setTypologyFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   const filteredFractions = useMemo(() => {
     return initialFractions.filter((f) => {
@@ -37,10 +38,61 @@ export default function FractionCatalog({ initialFractions }: FractionCatalogPro
     setStatusFilter('all');
   };
 
+    // Count active filters for badge
+  const activeFilterCount = (typeFilter !== 'all' ? 1 : 0) + 
+                            (typologyFilter !== 'all' ? 1 : 0) + 
+                            (statusFilter !== 'all' ? 1 : 0);
+
   return (
     <div>
+      {/* Mobile Filter Toggle */}
+      <div className="md:hidden mb-4">
+        <button
+          onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+          className="w-full flex items-center justify-between bg-primary-bg/50 border border-border p-4 rounded text-white"
+          aria-expanded={isFiltersOpen}
+          aria-controls="filter-panel"
+        >
+          <span className="flex items-center gap-2">
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+            <span className="font-display text-sm uppercase tracking-widest">{t('catalog.filters')}</span>
+            {activeFilterCount > 0 && (
+              <span className="bg-accent-gold text-primary-bg text-xs font-bold px-2 py-0.5 rounded-full">
+                {activeFilterCount}
+              </span>
+            )}
+          </span>
+          <svg
+            className={`w-5 h-5 transition-transform ${isFiltersOpen ? 'rotate-180' : ''}`}
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+
       {/* Filters */}
-      <div className="mb-10 bg-primary-bg/50 border border-border p-6 rounded">
+      <div 
+        id="filter-panel"
+        className={`mb-10 bg-primary-bg/50 border border-border p-6 rounded ${isFiltersOpen ? 'block' : 'hidden'} md:block`}
+      >
         <div className="flex flex-col md:flex-row gap-6 items-end">
           <div className="w-full md:w-1/4">
             <label className="block text-sm text-zinc-400 uppercase tracking-widest mb-2">
