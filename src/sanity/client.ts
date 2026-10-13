@@ -5,5 +5,5 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn: false, //TODO: change once deploying to actual hosting and not GitHub pages
 })
