@@ -1,8 +1,8 @@
 import type { Context } from "@netlify/edge-functions";
 
 export default async function handler(req: Request, context: Context) {
-  const user = Deno.env.get("BASIC_AUTH_USER") ?? "";
-  const pass = Deno.env.get("BASIC_AUTH_PASS") ?? "";
+  const user = Netlify.env.get("BASIC_AUTH_USER") ?? "";
+  const pass = Netlify.env.get("BASIC_AUTH_PASS") ?? "";
 
   // If no credentials are configured, skip auth (e.g. production environment)
   if (!user) {
